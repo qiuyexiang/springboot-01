@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.spring.maper.PmProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.spring.pojo.PmProject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="constructionId" property="constructionid" jdbcType="INTEGER" />
+    <result column="designId" property="designid" jdbcType="INTEGER" />
+    <result column="supervisorId" property="supervisorid" jdbcType="INTEGER" />
+    <result column="powerSupplyContractId" property="powersupplycontractid" jdbcType="INTEGER" />
+    <result column="numberDate" property="numberdate" jdbcType="TIMESTAMP" />
+    <result column="source" property="source" jdbcType="CHAR" />
+    <result column="pactmoney" property="pactmoney" jdbcType="DOUBLE" />
+    <result column="settleAccounts" property="settleaccounts" jdbcType="DOUBLE" />
+    <result column="receipt" property="receipt" jdbcType="DOUBLE" />
+    <result column="geld" property="geld" jdbcType="DOUBLE" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="startDate" property="startdate" jdbcType="DATE" />
+    <result column="completionDate" property="completiondate" jdbcType="DATE" />
+    <result column="clientPrincipal" property="clientprincipal" jdbcType="INTEGER" />
+    <result column="bidderId" property="bidderid" jdbcType="INTEGER" />
+    <result column="managerId" property="managerid" jdbcType="INTEGER" />
+    <result column="supervisorSupervisionId" property="supervisorsupervisionid" jdbcType="INTEGER" />
+    <result column="asideSupervisionId" property="asidesupervisionid" jdbcType="INTEGER" />
+    <result column="roadworkDeptId" property="roadworkdeptid" jdbcType="INTEGER" />
+    <result column="substationCapacity" property="substationcapacity" jdbcType="DOUBLE" />
+    <result column="lineLlength" property="linellength" jdbcType="DOUBLE" />
+    <result column="area" property="area" jdbcType="DOUBLE" />
+    <result column="quality" property="quality" jdbcType="DOUBLE" />
+    <result column="progressofworks" property="progressofworks" jdbcType="CHAR" />
+    <result column="progressofworksState" property="progressofworksstate" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, number, name, type, constructionId, designId, supervisorId, powerSupplyContractId, 
+    numberDate, source, pactmoney, settleAccounts, receipt, geld, details, site, startDate, 
+    completionDate, clientPrincipal, bidderId, managerId, supervisorSupervisionId, asideSupervisionId, 
+    roadworkDeptId, substationCapacity, lineLlength, area, quality, progressofworks, 
+    progressofworksState, remark, state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ht.spring.pojo.PmProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pm_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pm_project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pm_project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ht.spring.pojo.PmProjectExample" >
+    delete from pm_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ht.spring.pojo.PmProject" >
+    insert into pm_project (id, number, name, 
+      type, constructionId, designId, 
+      supervisorId, powerSupplyContractId, numberDate, 
+      source, pactmoney, settleAccounts, 
+      receipt, geld, details, 
+      site, startDate, completionDate, 
+      clientPrincipal, bidderId, managerId, 
+      supervisorSupervisionId, asideSupervisionId, 
+      roadworkDeptId, substationCapacity, lineLlength, 
+      area, quality, progressofworks, 
+      progressofworksState, remark, state
+      )
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{constructionid,jdbcType=INTEGER}, #{designid,jdbcType=INTEGER}, 
+      #{supervisorid,jdbcType=INTEGER}, #{powersupplycontractid,jdbcType=INTEGER}, #{numberdate,jdbcType=TIMESTAMP}, 
+      #{source,jdbcType=CHAR}, #{pactmoney,jdbcType=DOUBLE}, #{settleaccounts,jdbcType=DOUBLE}, 
+      #{receipt,jdbcType=DOUBLE}, #{geld,jdbcType=DOUBLE}, #{details,jdbcType=VARCHAR}, 
+      #{site,jdbcType=VARCHAR}, #{startdate,jdbcType=DATE}, #{completiondate,jdbcType=DATE}, 
+      #{clientprincipal,jdbcType=INTEGER}, #{bidderid,jdbcType=INTEGER}, #{managerid,jdbcType=INTEGER}, 
+      #{supervisorsupervisionid,jdbcType=INTEGER}, #{asidesupervisionid,jdbcType=INTEGER}, 
+      #{roadworkdeptid,jdbcType=INTEGER}, #{substationcapacity,jdbcType=DOUBLE}, #{linellength,jdbcType=DOUBLE}, 
+      #{area,jdbcType=DOUBLE}, #{quality,jdbcType=DOUBLE}, #{progressofworks,jdbcType=CHAR}, 
+      #{progressofworksstate,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.spring.pojo.PmProject" >
+    insert into pm_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="constructionid != null" >
+        constructionId,
+      </if>
+      <if test="designid != null" >
+        designId,
+      </if>
+      <if test="supervisorid != null" >
+        supervisorId,
+      </if>
+      <if test="powersupplycontractid != null" >
+        powerSupplyContractId,
+      </if>
+      <if test="numberdate != null" >
+        numberDate,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="pactmoney != null" >
+        pactmoney,
+      </if>
+      <if test="settleaccounts != null" >
+        settleAccounts,
+      </if>
+      <if test="receipt != null" >
+        receipt,
+      </if>
+      <if test="geld != null" >
+        geld,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="startdate != null" >
+        startDate,
+      </if>
+      <if test="completiondate != null" >
+        completionDate,
+      </if>
+      <if test="clientprincipal != null" >
+        clientPrincipal,
+      </if>
+      <if test="bidderid != null" >
+        bidderId,
+      </if>
+      <if test="managerid != null" >
+        managerId,
+      </if>
+      <if test="supervisorsupervisionid != null" >
+        supervisorSupervisionId,
+      </if>
+      <if test="asidesupervisionid != null" >
+        asideSupervisionId,
+      </if>
+      <if test="roadworkdeptid != null" >
+        roadworkDeptId,
+      </if>
+      <if test="substationcapacity != null" >
+        substationCapacity,
+      </if>
+      <if test="linellength != null" >
+        lineLlength,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="progressofworks != null" >
+        progressofworks,
+      </if>
+      <if test="progressofworksstate != null" >
+        progressofworksState,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="constructionid != null" >
+        #{constructionid,jdbcType=INTEGER},
+      </if>
+      <if test="designid != null" >
+        #{designid,jdbcType=INTEGER},
+      </if>
+      <if test="supervisorid != null" >
+        #{supervisorid,jdbcType=INTEGER},
+      </if>
+      <if test="powersupplycontractid != null" >
+        #{powersupplycontractid,jdbcType=INTEGER},
+      </if>
+      <if test="numberdate != null" >
+        #{numberdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=CHAR},
+      </if>
+      <if test="pactmoney != null" >
+        #{pactmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="settleaccounts != null" >
+        #{settleaccounts,jdbcType=DOUBLE},
+      </if>
+      <if test="receipt != null" >
+        #{receipt,jdbcType=DOUBLE},
+      </if>
+      <if test="geld != null" >
+        #{geld,jdbcType=DOUBLE},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="completiondate != null" >
+        #{completiondate,jdbcType=DATE},
+      </if>
+      <if test="clientprincipal != null" >
+        #{clientprincipal,jdbcType=INTEGER},
+      </if>
+      <if test="bidderid != null" >
+        #{bidderid,jdbcType=INTEGER},
+      </if>
+      <if test="managerid != null" >
+        #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="supervisorsupervisionid != null" >
+        #{supervisorsupervisionid,jdbcType=INTEGER},
+      </if>
+      <if test="asidesupervisionid != null" >
+        #{asidesupervisionid,jdbcType=INTEGER},
+      </if>
+      <if test="roadworkdeptid != null" >
+        #{roadworkdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="substationcapacity != null" >
+        #{substationcapacity,jdbcType=DOUBLE},
+      </if>
+      <if test="linellength != null" >
+        #{linellength,jdbcType=DOUBLE},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=DOUBLE},
+      </if>
+      <if test="progressofworks != null" >
+        #{progressofworks,jdbcType=CHAR},
+      </if>
+      <if test="progressofworksstate != null" >
+        #{progressofworksstate,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ht.spring.pojo.PmProjectExample" resultType="java.lang.Integer" >
+    select count(*) from pm_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pm_project
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.constructionid != null" >
+        constructionId = #{record.constructionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.designid != null" >
+        designId = #{record.designid,jdbcType=INTEGER},
+      </if>
+      <if test="record.supervisorid != null" >
+        supervisorId = #{record.supervisorid,jdbcType=INTEGER},
+      </if>
+      <if test="record.powersupplycontractid != null" >
+        powerSupplyContractId = #{record.powersupplycontractid,jdbcType=INTEGER},
+      </if>
+      <if test="record.numberdate != null" >
+        numberDate = #{record.numberdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=CHAR},
+      </if>
+      <if test="record.pactmoney != null" >
+        pactmoney = #{record.pactmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.settleaccounts != null" >
+        settleAccounts = #{record.settleaccounts,jdbcType=DOUBLE},
+      </if>
+      <if test="record.receipt != null" >
+        receipt = #{record.receipt,jdbcType=DOUBLE},
+      </if>
+      <if test="record.geld != null" >
+        geld = #{record.geld,jdbcType=DOUBLE},
+      </if>
+      <if test="record.details != null" >
+        details = #{record.details,jdbcType=VARCHAR},
+      </if>
+      <if test="record.site != null" >
+        site = #{record.site,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null" >
+        startDate = #{record.startdate,jdbcType=DATE},
+      </if>
+      <if test="record.completiondate != null" >
+        completionDate = #{record.completiondate,jdbcType=DATE},
+      </if>
+      <if test="record.clientprincipal != null" >
+        clientPrincipal = #{record.clientprincipal,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidderid != null" >
+        bidderId = #{record.bidderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.managerid != null" >
+        managerId = #{record.managerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.supervisorsupervisionid != null" >
+        supervisorSupervisionId = #{record.supervisorsupervisionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.asidesupervisionid != null" >
+        asideSupervisionId = #{record.asidesupervisionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.roadworkdeptid != null" >
+        roadworkDeptId = #{record.roadworkdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="record.substationcapacity != null" >
+        substationCapacity = #{record.substationcapacity,jdbcType=DOUBLE},
+      </if>
+      <if test="record.linellength != null" >
+        lineLlength = #{record.linellength,jdbcType=DOUBLE},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=DOUBLE},
+      </if>
+      <if test="record.quality != null" >
+        quality = #{record.quality,jdbcType=DOUBLE},
+      </if>
+      <if test="record.progressofworks != null" >
+        progressofworks = #{record.progressofworks,jdbcType=CHAR},
+      </if>
+      <if test="record.progressofworksstate != null" >
+        progressofworksState = #{record.progressofworksstate,jdbcType=CHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pm_project
+    set id = #{record.id,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      constructionId = #{record.constructionid,jdbcType=INTEGER},
+      designId = #{record.designid,jdbcType=INTEGER},
+      supervisorId = #{record.supervisorid,jdbcType=INTEGER},
+      powerSupplyContractId = #{record.powersupplycontractid,jdbcType=INTEGER},
+      numberDate = #{record.numberdate,jdbcType=TIMESTAMP},
+      source = #{record.source,jdbcType=CHAR},
+      pactmoney = #{record.pactmoney,jdbcType=DOUBLE},
+      settleAccounts = #{record.settleaccounts,jdbcType=DOUBLE},
+      receipt = #{record.receipt,jdbcType=DOUBLE},
+      geld = #{record.geld,jdbcType=DOUBLE},
+      details = #{record.details,jdbcType=VARCHAR},
+      site = #{record.site,jdbcType=VARCHAR},
+      startDate = #{record.startdate,jdbcType=DATE},
+      completionDate = #{record.completiondate,jdbcType=DATE},
+      clientPrincipal = #{record.clientprincipal,jdbcType=INTEGER},
+      bidderId = #{record.bidderid,jdbcType=INTEGER},
+      managerId = #{record.managerid,jdbcType=INTEGER},
+      supervisorSupervisionId = #{record.supervisorsupervisionid,jdbcType=INTEGER},
+      asideSupervisionId = #{record.asidesupervisionid,jdbcType=INTEGER},
+      roadworkDeptId = #{record.roadworkdeptid,jdbcType=INTEGER},
+      substationCapacity = #{record.substationcapacity,jdbcType=DOUBLE},
+      lineLlength = #{record.linellength,jdbcType=DOUBLE},
+      area = #{record.area,jdbcType=DOUBLE},
+      quality = #{record.quality,jdbcType=DOUBLE},
+      progressofworks = #{record.progressofworks,jdbcType=CHAR},
+      progressofworksState = #{record.progressofworksstate,jdbcType=CHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.spring.pojo.PmProject" >
+    update pm_project
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="constructionid != null" >
+        constructionId = #{constructionid,jdbcType=INTEGER},
+      </if>
+      <if test="designid != null" >
+        designId = #{designid,jdbcType=INTEGER},
+      </if>
+      <if test="supervisorid != null" >
+        supervisorId = #{supervisorid,jdbcType=INTEGER},
+      </if>
+      <if test="powersupplycontractid != null" >
+        powerSupplyContractId = #{powersupplycontractid,jdbcType=INTEGER},
+      </if>
+      <if test="numberdate != null" >
+        numberDate = #{numberdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=CHAR},
+      </if>
+      <if test="pactmoney != null" >
+        pactmoney = #{pactmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="settleaccounts != null" >
+        settleAccounts = #{settleaccounts,jdbcType=DOUBLE},
+      </if>
+      <if test="receipt != null" >
+        receipt = #{receipt,jdbcType=DOUBLE},
+      </if>
+      <if test="geld != null" >
+        geld = #{geld,jdbcType=DOUBLE},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        startDate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="completiondate != null" >
+        completionDate = #{completiondate,jdbcType=DATE},
+      </if>
+      <if test="clientprincipal != null" >
+        clientPrincipal = #{clientprincipal,jdbcType=INTEGER},
+      </if>
+      <if test="bidderid != null" >
+        bidderId = #{bidderid,jdbcType=INTEGER},
+      </if>
+      <if test="managerid != null" >
+        managerId = #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="supervisorsupervisionid != null" >
+        supervisorSupervisionId = #{supervisorsupervisionid,jdbcType=INTEGER},
+      </if>
+      <if test="asidesupervisionid != null" >
+        asideSupervisionId = #{asidesupervisionid,jdbcType=INTEGER},
+      </if>
+      <if test="roadworkdeptid != null" >
+        roadworkDeptId = #{roadworkdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="substationcapacity != null" >
+        substationCapacity = #{substationcapacity,jdbcType=DOUBLE},
+      </if>
+      <if test="linellength != null" >
+        lineLlength = #{linellength,jdbcType=DOUBLE},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=DOUBLE},
+      </if>
+      <if test="progressofworks != null" >
+        progressofworks = #{progressofworks,jdbcType=CHAR},
+      </if>
+      <if test="progressofworksstate != null" >
+        progressofworksState = #{progressofworksstate,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.spring.pojo.PmProject" >
+    update pm_project
+    set number = #{number,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      constructionId = #{constructionid,jdbcType=INTEGER},
+      designId = #{designid,jdbcType=INTEGER},
+      supervisorId = #{supervisorid,jdbcType=INTEGER},
+      powerSupplyContractId = #{powersupplycontractid,jdbcType=INTEGER},
+      numberDate = #{numberdate,jdbcType=TIMESTAMP},
+      source = #{source,jdbcType=CHAR},
+      pactmoney = #{pactmoney,jdbcType=DOUBLE},
+      settleAccounts = #{settleaccounts,jdbcType=DOUBLE},
+      receipt = #{receipt,jdbcType=DOUBLE},
+      geld = #{geld,jdbcType=DOUBLE},
+      details = #{details,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=DATE},
+      completionDate = #{completiondate,jdbcType=DATE},
+      clientPrincipal = #{clientprincipal,jdbcType=INTEGER},
+      bidderId = #{bidderid,jdbcType=INTEGER},
+      managerId = #{managerid,jdbcType=INTEGER},
+      supervisorSupervisionId = #{supervisorsupervisionid,jdbcType=INTEGER},
+      asideSupervisionId = #{asidesupervisionid,jdbcType=INTEGER},
+      roadworkDeptId = #{roadworkdeptid,jdbcType=INTEGER},
+      substationCapacity = #{substationcapacity,jdbcType=DOUBLE},
+      lineLlength = #{linellength,jdbcType=DOUBLE},
+      area = #{area,jdbcType=DOUBLE},
+      quality = #{quality,jdbcType=DOUBLE},
+      progressofworks = #{progressofworks,jdbcType=CHAR},
+      progressofworksState = #{progressofworksstate,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
